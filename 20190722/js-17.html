@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        table{
+            width:50%;
+            border-radius: 5px;
+            background: pink;
+        }
+        tr{
+            background:red;
+        }
+        td{
+            background: white;
+            border:2px solid lightblue;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>        
+    <h2>二进制转化器</h2>
+    <input id="dec-number" type="text" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="text" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <hr>
+    <h2>3的小游戏</h2>
+    <button id="number3">3的小游戏</button>
+    <hr>
+    <h2>九九乘法表</h2>
+    <button id="ninenine">生成九九乘法表</button>
+    <table id="table"></table>
+    <script>
+        function isNumber(val){
+            var regPos = /^[1-9]\d*|0$/;
+            if(regPos.test(val)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function hasthree(val){
+            var regPos = /[3]+/;
+            var nthree =  /^[0369]*(([147][0369]*|[258][0369]*[258][0369]*)([147][0369]*[258][0369]*)*([258][0369]*|[147][0369]*[147][0369]*)|[258][0369]*[147][0369]*)*$/;
+            if(regPos.test(val)||nthree.test(val)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function dec2bin(decNumber) {
+        // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+            if(isNumber(document.getElementById("dec-number").value)){
+                var a=decNumber;
+                console.log("a:"+a);
+                var res="";
+                while(a!=0){
+                    res=a%2+res;
+                    a=parseInt(a/2);
+                }
+                console.log("res:"+res);
+                return res;
+            }
+            else{
+                alert("is not a number bigger than -1");
+            }
+        }
+
+        // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+        document.getElementById("trans-btn").onclick=function(){  
+            var x=parseInt(document.getElementById("dec-number").value);
+            var limit=parseInt(document.getElementById("bin-bit").value);
+            var l=dec2bin(x).length;
+            var res=dec2bin(x).toString();
+            console.log("x:"+x);
+            console.log("limit:"+limit);
+            console.log("l:"+l);
+            console.log("res:"+res);
+            if(l>limit){
+                document.getElementById("result").innerHTML=res;
+                console.log("位数不足");
+            }
+            else{               
+                for(l;l<limit;l++){
+                    res="0"+res;
+                    console.log("newres:"+res);
+                    document.getElementById("result").innerHTML=res;
+                }
+            }
+        }
+
+        document.getElementById("number3").onclick=function(){ 
+            var res="";
+            for(var i=1;i<=100;i++){
+                if(hasthree(i)){
+                    res=res+"PA,";
+                }
+                else{
+                    res=res+i+",";
+                }               
+            }
+            console.log(res);
+        }
+
+        document.getElementById("ninenine").onclick=function(){
+            for(var i=1;i<=9;i++){
+                var newtr=document.createElement("tr");
+                document.getElementById("table").appendChild(newtr);
+                for(var j=1;j<=i;j++){
+                    var newtd=document.createElement("td");
+                    var x="";
+                    x=i+"*"+j+"="+i*j;
+                    newtd.innerHTML=x;
+                    newtr.appendChild(newtd);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
