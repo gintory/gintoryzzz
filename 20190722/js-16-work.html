@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简历</title>
+    <style>
+        body{
+            padding:50px;
+        }
+        li{
+            display: inline;
+            margin-right:30px;
+        }
+        b{
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>简历</h1><hr>
+
+    <h2>基本信息</h2>
+    <ul>
+        <li><b>姓名</b>张三</li>
+        <li><b>性别</b>男</li>
+        <li><b>应聘职位</b>web工程师</li>       
+    </ul>
+
+    <button id="hello">打个招呼吧</button><br><br>
+    <button id="showmyhobby">点击查看我的爱好</button>
+    <p id="hobby" style="display: none;color:red">我的爱好是打游戏！！！</p><hr>
+
+    <h2>联系方式</h2>
+    <ul>
+        <li><b>手机</b>123123123</li>
+        <li><b>Email</b>123123123@qq.com</li>
+        <li><b>个人主页</b>github</li>       
+    </ul><hr>   
+
+    <h2>能力描述</h2>
+    <h3>技术能力</h3>
+    <p>熟练掌握html css javascript</p>
+    <h3>综合能力</h3>
+    <p>良好的沟通，主动积极，努力勤奋</p><hr>
+
+    <h2>教育经历</h2>
+    <h3>本科</h3>
+    <p>百度</p>
+    <h3>研究生</h3>
+    <p>百度</p><hr>
+
+    <h2>项目经历</h2>
+    <h3>小度小度</h3>
+    <p>前端工程师</p>
+    <h3>SAN Doc</h3>
+    <p>文档工程师</p>
+    <script>
+        document.getElementById("hello").onclick=function(){
+            var hour=new Date().getHours();
+            console.log(hour);
+            if(hour>=6&&hour<10){
+                alert("早上好");
+            }
+            if(hour>=10&&hour<14){
+                alert("中午好");
+            }
+            if(hour>=14&&hour<18){
+                alert("下午好");
+            }
+            if(hour>=18||(hour>0&&hour<6)){
+                alert("晚上好");
+            }           
+        }
+        document.getElementById("showmyhobby").onclick=function(){
+            document.getElementById("hobby").style.display="block";
+        }
+    </script>
+</body>
+</html>
