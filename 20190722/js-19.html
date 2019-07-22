@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="news-top" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some link1</a></li>
+                    <li><span>JS</span><a href="" class="active">Some link2</a></li>
+                    <li><span>CSS</span><a href="">Some link3</a></li>
+                    <li><span>JS</span><a href="">Some link4</a></li>
+                </ul>
+            </div>
+            <img src="" alt="">
+            <p class="">Some text</p>
+        </div>
+        <div id="news-normal" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some link1</a></li>
+                    <li><span>HTML</span><a href="">Some link2</a></li>
+                    <li><span>JS</span><a href="#" class="active">Some link3</a></li>
+                    <li><span>CSS</span><a href="">Some link4</a></li>
+                </ul>
+            </div>
+            <img src="" alt="">
+            <p class="">Some text</p>
+        </div>
+    </div>
+    <script>
+        window.onload = function getAllListItem(){
+            var list = document.getElementsByTagName("li");
+            console.log(list);
+            findAllHtmlSpanInOneSection('news-normal');
+            findListItem('news-top','JS')
+            getActiveLinkContent('news-normal');
+        };
+
+        function findAllHtmlSpanInOneSection(sectionId){
+            var list = document.getElementById(sectionId).getElementsByTagName("span");
+            for(var i=0;i<list.length;i++){
+                if(list[i].innerHTML=="HTML"){
+                    console.log(list[i]);
+                }
+            }            
+        }
+
+        function findListItem(sectionId,spanCont){
+            var list = document.getElementById(sectionId).getElementsByTagName("span");
+            for(var i=0;i<list.length;i++){
+                if(list[i].innerHTML==spanCont){
+                    console.log(list[i].parentNode);
+                }
+            }    
+        }
+
+        function getActiveLinkContent(sectionId){
+            var list = document.getElementById(sectionId).getElementsByTagName("a");
+            for(var i=0;i<list.length;i++){
+                if(list[i].className=="active"){
+                    console.log(list[i].innerHTML);
+                }               
+            } 
+        }
+    </script>
+</body>
+</html>
